@@ -1,0 +1,17 @@
+num=int(input("escribe un numero: "))
+numantes=0
+numdespues=0
+contador100=0
+while num!=0:
+    if num==100:
+        numantes=numantes + num
+        contador100=contador100+1
+
+    elif contador100>=3:
+        numdespues=numdespues+num
+    num=int(input("escribe un numero: "))
+if numdespues>numantes:
+    print("numdespues mayor q numantes", numdespues)
+else:
+    print("numantes mayor q numdespues", numantes)
+

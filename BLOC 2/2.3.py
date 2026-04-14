@@ -1,35 +1,27 @@
-# Inicialitzem acumuladors
-vots_valids = 0
-vots_nuls = 0
+lletra = ""
+votos_validos = 0
+votos_nulos = 0
 
-# 1. Llegim la primera línia (Inici de la seqüència)
-entrada = input("Introdueix vots i lletra (ex: 5 V) o '0 E' per acabar: ")
-dades = entrada.split() # Separem "5" de "V"
+while lletra != "E":
+    votos = input("Enter votos y una letra: ")
+    partes = votos.split()
 
-# 2. La condició de final és que la LLETRA (dades[1]) sigui 'E'
-while dades[1] != "E":
-    try:
-        num_vots = int(dades[0]) # Convertim el text "5" en número 5
-        lletra = dades[1]        # La lletra és "V" o "N"
+    numvotos = int(partes[0]) #hem d'igualar els num d evotos no podem estar sumat 1 q  ales coses.
+    lletra = partes[1]
 
-        # 3. Processament element a element
-        if lletra == "V":
-            vots_valids = vots_valids + num_vots
-        elif lletra == "N":
-            vots_nuls = vots_nuls + num_vots
-        # Si és una altra lletra, l'enunciat diu que s'ignora (no fem res)
+    if lletra == "V":
+        votos_validos += numvotos
+    elif lletra == "N":
+        votos_nulos += numvotos
+    elif lletra == "E":
+        break# pq pari
+    else:
+        continue
 
-    except (ValueError, IndexError):
-        print("Format incorrecte, línia ignorada.")
+votos_total = votos_validos + votos_nulos
 
-    # 4. MOLT IMPORTANT: Tornar a demanar dades (Obtenir següent element)
-    # Si no fas això, el bucle mai s'aturarà!
-    entrada = input("Següent línia: ")
-    dades = entrada.split()
+if votos_total > 0: #pensar q al estar dividit NO pOT ser menor o igual a =
+    porcentaje_validos = votos_validos * 100 / votos_total
+    porcentaje_nulos = votos_nulos * 100 / votos_total
 
-# Càlcul final (fora del bucle)
-total = vots_valids + vots_nuls
-if total > 0:
-    perc_v = (vots_valids / total) * 100
-    perc_n = (vots_nuls / total) * 100
-    print(f"Vàlids: {perc_v:.1f}%, Nuls {perc_n:.1f}%")
+    print(f"Válidos: {porcentaje_validos:.1f}%, Nulos: {porcentaje_nulos:.1f}%") #per q posi els resultats
